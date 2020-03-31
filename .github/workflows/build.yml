@@ -25,7 +25,7 @@ jobs:
     - name: Lint
       run: helm lint charts/*
   
-   release:
+  release:
 
     if: contains(github.ref, "master") && contains(github.event, "push")
 
@@ -46,5 +46,3 @@ jobs:
         charts_repo_url: http://www.qwyck.co.uk/helm-charts/
       env:
         CR_TOKEN: "${{ secrets.CHART_RELEASER_TOKEN }}"
-
-
