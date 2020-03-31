@@ -5,6 +5,7 @@ on:
     branches:
       - '*'
       - '*/*'
+      - '!master'
   pull_request:
     branches:
       - '*'
@@ -20,9 +21,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: azure/setup-helm@v1
-        with:
-          version: '3.1.2'
+      - run: git fetch --prune --unshallow
 
       - name: Lint
-        run: helm lint charts/*
+        uses: helm/chart-testing-action@v1.0.0-rc.1
+        with:
+          command: lint
+
+      - name: Kind
+        uses: helm/kind-action@v1.0.0-alpha.3
+        if: steps.lint.outputs.changed == 'true'
+
+      - name: Test
+        uses: helm/chart-testing-action@v1.0.0-rc.1
+        with:
+          command: install
