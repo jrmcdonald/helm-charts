@@ -2,6 +2,9 @@ name: lint
 
 on:
   pull_request:
+    branches-ingore:
+      - '*'
+      - '*/*'
 
 jobs:
   lint:
