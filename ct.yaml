@@ -5,3 +5,5 @@ chart-dirs:
 chart-repos:
   - qwyck=https://www.qwyck.co.uk/helm-charts
 helm-extra-args: --timeout 600s
+validate-maintainers: false
+chart-yaml-schema: ct-schema.yaml
