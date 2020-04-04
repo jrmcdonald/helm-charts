@@ -1,0 +1,7 @@
+# See https://github.com/helm/chart-testing#configuration
+remote: origin
+chart-dirs:
+  - charts
+chart-repos:
+  - qwyck=https://www.qwyck.co.uk/helm-charts
+helm-extra-args: --timeout 600s
