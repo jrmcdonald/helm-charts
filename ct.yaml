@@ -3,5 +3,5 @@ remote: origin
 chart-dirs:
   - charts
 chart-repos:
-  - bitnami=https://www.qwyck.co.uk/charts
+  - qwyck=https://www.qwyck.co.uk/helm-charts
 helm-extra-args: --timeout 600s
