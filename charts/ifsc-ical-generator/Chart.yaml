@@ -1,7 +1,14 @@
 apiVersion: v2
 name: ifsc-ical-generator
 description: A Helm chart for the ifsc-ical-generator application
+home: https://github.com/jrmcdonald/ifsc-ical-generator
 
 type: application
 
+maintainers:
+  - name: Jamie McDonald
+    email: jamie@qwyck.net
+    url: https://www.qwyck.co.uk
+
 version: 0.3.1
+appVersion: ignored-field
