@@ -28,14 +28,14 @@ ingress:
   enabled: true
   annotations:
     kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
+    cert-manager.io/issuer: "letsencrypt-prod"
   hosts:
-    - host: ifsc.qwyck.co.uk
+    - host: ifsc.qwyck-cloud.co.uk
       paths: ["/"]
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+  tls:
+    - secretName: ifsc-ical-generator-tls
+      hosts:
+        - ifsc.qwyck-cloud.co.uk
 
 ports:
   - name: http
