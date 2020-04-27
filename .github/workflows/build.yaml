@@ -1,0 +1,108 @@
+name: build
+
+on: [push, pull_request]
+
+env:
+  slack-channel: 'status-ci-cd'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    
+    if: contains(toJson(github.event.commits), '[skip ci]') == false
+
+    steps:
+      - name: Notify Slack Started
+        uses: voxmedia/github-action-slack-notify-build@v1
+        id: slack
+        with:
+          channel: ${{ env.slack-channel }}
+          status: LINT STARTED
+          color: warning
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+    
+      - uses: actions/checkout@v2
+      - run: git fetch --prune --unshallow
+
+      - name: Lint Charts
+        uses: helm/chart-testing-action@v1.0.0-rc.2
+        with:
+          command: lint
+          config: ct.yaml
+
+      - name: Notify Slack Success
+        if: success()
+        uses: voxmedia/github-action-slack-notify-build@v1
+        with:
+          message_id: ${{ steps.slack.outputs.message_id }}
+          channel: ${{ env.slack-channel }}
+          status: LINT SUCCESS
+          color: good
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          
+      - name: Notify Slack Failed
+        if: failure()
+        uses: voxmedia/github-action-slack-notify-build@v1
+        with:
+          message_id: ${{ steps.slack.outputs.message_id }}
+          channel: ${{ env.slack-channel }}
+          status: LINT FAILED
+          color: danger
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+  
+  release:
+    runs-on: ubuntu-latest
+    
+    if: contains(github.ref, 'master') && contains(github.event_name, 'push') && contains(toJson(github.event.commits), '[skip ci]') == false
+
+    steps:
+      - name: Notify Slack Started
+        uses: voxmedia/github-action-slack-notify-build@v1
+        id: slack
+        with:
+          channel: ${{ env.slack-channel }}
+          status: RELEASE STARTED
+          color: warning
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          
+      - uses: actions/checkout@v2
+      - run: git fetch --prune --unshallow
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Release Charts
+        uses: helm/chart-releaser-action@v1.0.0-rc.1
+        with:
+          charts_dir: charts/
+          charts_repo_url: http://www.qwyck.co.uk/helm-charts/
+        env:
+          CR_TOKEN: "${{ secrets.CHART_RELEASER_TOKEN }}"
+          
+      - name: Notify Slack Success
+        if: success()
+        uses: voxmedia/github-action-slack-notify-build@v1
+        with:
+          message_id: ${{ steps.slack.outputs.message_id }}
+          channel: ${{ env.slack-channel }}
+          status: RELEASE SUCCESS
+          color: good
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          
+      - name: Notify Slack Failed
+        if: failure()
+        uses: voxmedia/github-action-slack-notify-build@v1
+        with:
+          message_id: ${{ steps.slack.outputs.message_id }}
+          channel: ${{ env.slack-channel }}
+          status: RELEASE FAILED
+          color: danger
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
