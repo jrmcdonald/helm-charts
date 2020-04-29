@@ -79,8 +79,17 @@ applicationConfig:
   external:
     ifsc:
       host: "http://egw.ifsc-climbing.org"
+
   management:
+    endpoint:
+      restart:
+        enabled: true
     endpoints:
       web:
         exposure:
-          include: health,info,metrics
+          include: health,info,metrics,restart
+  spring:
+    cloud:
+      kubernetes:
+        reload:
+          strategy: restart_context
