@@ -6,8 +6,8 @@ metadata:
   {{- include "ifsc-ical-generator.labels" . | nindent 4 }}
 rules:
   - apiGroups: ["", "extensions", "apps"]
-    resources: ["configmaps", "pods", "services", "endpoints", "secrets"]
-    verbs: ["get", "list", "watch"]
+    resources: ["configmaps", "pods", "services", "endpoints", "secrets", "namespaces"]
+    verbs: ["get", "list", "watch", "edit", "view"]
 
 ---
 
