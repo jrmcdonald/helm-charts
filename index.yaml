@@ -2,6 +2,20 @@ apiVersion: v1
 entries:
   ifsc-ical-generator:
   - apiVersion: v2
+    created: "2020-04-29T09:58:57.959722697Z"
+    description: A Helm chart for the ifsc-ical-generator application
+    digest: 996e735d3d5742c905c303c3d3c2d066bafc1b520ab4ad3ddcfc13afe458b79e
+    home: https://github.com/jrmcdonald/ifsc-ical-generator
+    maintainers:
+    - email: jamie@qwyck.net
+      name: Jamie McDonald
+      url: https://www.qwyck.co.uk
+    name: ifsc-ical-generator
+    type: application
+    urls:
+    - https://github.com/jrmcdonald/helm-charts/releases/download/ifsc-ical-generator-0.4.1/ifsc-ical-generator-0.4.1.tgz
+    version: 0.4.1
+  - apiVersion: v2
     created: "2020-04-28T09:23:28.469879935Z"
     description: A Helm chart for the ifsc-ical-generator application
     digest: 257e9abeca0c5ed89737be69d44faf0be56fc94c5f5dbb89983975c44b6a2a99
