@@ -4,6 +4,7 @@ chart-dirs:
   - charts
 chart-repos:
   - qwyck=https://www.qwyck.co.uk/helm-charts
+  - bitnami=https://charts.bitnami.com/bitnami
 helm-extra-args: --timeout 600s
 validate-maintainers: false
 chart-yaml-schema: ct-schema.yaml
