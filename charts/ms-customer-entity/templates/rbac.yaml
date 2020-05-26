@@ -1,0 +1,27 @@
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ include "ms-customer-entity.fullname" . }}
+  labels:
+  {{- include "ms-customer-entity.labels" . | nindent 4 }}
+rules:
+  - apiGroups: ["", "extensions", "apps"]
+    resources: ["configmaps", "pods", "services", "endpoints", "secrets", "namespaces"]
+    verbs: ["get", "list", "watch", "edit", "view"]
+
+---
+
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ include "ms-customer-entity.fullname" . }}
+  labels:
+  {{- include "ms-customer-entity.labels" . | nindent 4 }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "ms-customer-entity.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+roleRef:
+  kind: Role
+  name: {{ include "ms-customer-entity.fullname" . }}
+  apiGroup: rbac.authorization.k8s.io
