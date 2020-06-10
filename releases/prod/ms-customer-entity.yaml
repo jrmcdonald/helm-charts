@@ -16,4 +16,4 @@ spec:
   values:
     image:
       repository: jrmcdonald/ms-customer-entity
-      tag: 1.1.0
+      tag: 1.2.0
