@@ -12,7 +12,7 @@ spec:
   chart:
     git: git@github.com:jrmcdonald/helm-charts
     path: charts/ifsc-ical-generator
-    ref: master
+    ref: main
   values:
     image:
       repository: jrmcdonald/ifsc-ical-generator

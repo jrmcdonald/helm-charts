@@ -56,7 +56,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     
-    if: contains(github.ref, 'master') && contains(github.event_name, 'push') && contains(toJson(github.event.commits), '[skip ci]') == false
+    if: contains(github.ref, 'main') && contains(github.event_name, 'push') && contains(toJson(github.event.commits), '[skip ci]') == false
 
     steps:
       - name: Notify Slack Started
