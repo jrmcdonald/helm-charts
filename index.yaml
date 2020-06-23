@@ -153,4 +153,19 @@ entries:
     urls:
     - https://github.com/jrmcdonald/helm-charts/releases/download/ms-customer-entity-1.0.0/ms-customer-entity-1.0.0.tgz
     version: 1.0.0
+  ms-customer-orchestration:
+  - apiVersion: v2
+    created: "2020-06-23T22:40:00.15701197Z"
+    description: A Helm chart for the customer-orchestration application
+    digest: 20e6c1430f31e16ae0c3e3b4affef7adc337480dcad241ed4679145f553a7e2e
+    home: https://github.com/jrmcdonald/ms-customer-orchestration
+    maintainers:
+    - email: jamie@qwyck.net
+      name: Jamie McDonald
+      url: https://www.qwyck.co.uk
+    name: ms-customer-orchestration
+    type: application
+    urls:
+    - https://github.com/jrmcdonald/helm-charts/releases/download/ms-customer-orchestration-1.0.0/ms-customer-orchestration-1.0.0.tgz
+    version: 1.0.0
 generated: "2020-03-31T22:16:57.075302+01:00"
