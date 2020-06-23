@@ -1,0 +1,27 @@
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ include "ms-customer-orchestration.fullname" . }}
+  labels:
+  {{- include "ms-customer-orchestration.labels" . | nindent 4 }}
+rules:
+  - apiGroups: ["", "extensions", "apps"]
+    resources: ["configmaps", "pods", "services", "endpoints", "namespaces"]
+    verbs: ["get", "list", "watch", "edit", "view"]
+
+---
+
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ include "ms-customer-orchestration.fullname" . }}
+  labels:
+  {{- include "ms-customer-orchestration.labels" . | nindent 4 }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "ms-customer-orchestration.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+roleRef:
+  kind: Role
+  name: {{ include "ms-customer-orchestration.fullname" . }}
+  apiGroup: rbac.authorization.k8s.io
