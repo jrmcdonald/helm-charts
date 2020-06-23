@@ -100,6 +100,24 @@ entries:
     version: 0.1.0
   ms-customer-entity:
   - apiVersion: v2
+    created: "2020-06-23T21:36:22.95156129Z"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.9.8
+    description: A Helm chart for the customer-entity application
+    digest: 7c16a9084687ab5c8aca031908042bc9bf7b72b36b6e230aa7c7f6f1ea303d10
+    home: https://github.com/jrmcdonald/ms-customer-entity
+    maintainers:
+    - email: jamie@qwyck.net
+      name: Jamie McDonald
+      url: https://www.qwyck.co.uk
+    name: ms-customer-entity
+    type: application
+    urls:
+    - https://github.com/jrmcdonald/helm-charts/releases/download/ms-customer-entity-1.2.0/ms-customer-entity-1.2.0.tgz
+    version: 1.2.0
+  - apiVersion: v2
     created: "2020-06-22T11:43:11.70139342Z"
     dependencies:
     - name: postgresql
