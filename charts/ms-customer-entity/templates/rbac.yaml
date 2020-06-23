@@ -6,7 +6,7 @@ metadata:
   {{- include "ms-customer-entity.labels" . | nindent 4 }}
 rules:
   - apiGroups: ["", "extensions", "apps"]
-    resources: ["configmaps", "pods", "services", "endpoints", "secrets", "namespaces"]
+    resources: ["configmaps", "pods", "services", "endpoints", "namespaces"]
     verbs: ["get", "list", "watch", "edit", "view"]
 
 ---
