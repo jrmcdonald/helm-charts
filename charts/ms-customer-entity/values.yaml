@@ -25,22 +25,7 @@ service:
   port: 80
 
 ingress:
-  enabled: true
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: "letsencrypt-staging"
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      location ~ /actuator {
-        deny all;
-        return 403;
-      }
-  hosts:
-    - host: api.qwyck-cloud.co.uk
-      paths: ["/customer-entity"]
-  tls:
-    - secretName: api-qwyck-cloud-tls
-      hosts:
-        - api.qwyck-cloud.co.uk
+  enabled: false
 
 ports:
   - name: http
