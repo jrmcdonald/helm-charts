@@ -99,7 +99,6 @@ applicationConfig:
           strategy: restart_context
     webflux:
       base-path: /openapi
-      
   openapi:
     endpoints:
       customer-orchestration:
@@ -110,4 +109,3 @@ applicationConfig:
         gateway-prefix: /customer-entity
         service-url: http://ms-customer-entity.prod
         service-path: /v3/api-docs
-          
