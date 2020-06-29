@@ -1,0 +1,19 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: ms-openapi-gateway
+  namespace: prod
+  annotations:
+    fluxcd.io/automated: "true"
+    filter.fluxcd.io/chart-image: semver:^1.0.0
+spec:
+  releaseName: ms-openapi-gateway
+  chart:
+    git: git@github.com:jrmcdonald/helm-charts
+    path: charts/ms-openapi-gateway
+    ref: main
+  values:
+    image:
+      repository: jrmcdonald/ms-openapi-gateway
+      tag: 1.0.0

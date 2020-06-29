@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: {{ .Release.Namespace }}
+  name: {{ include "ms-openapi-gateway.fullname" . }}
+  labels:
+  {{- include "ms-openapi-gateway.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+  {{- include "ms-openapi-gateway.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+    {{- include "ms-openapi-gateway.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "ms-openapi-gateway.serviceAccountName" . }}
+      securityContext:
+      {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+          {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+          {{- toYaml .Values.ports | nindent 12 }}
+          livenessProbe:
+          {{- toYaml .Values.probes.livenessProbe | nindent 12 }}
+          readinessProbe:
+          {{- toYaml .Values.probes.readinessProbe | nindent 12 }}
+          startupProbe:
+          {{- toYaml .Values.probes.startupProbe | nindent 12 }}
+          resources:
+          {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.secrets.mount -}}
+          volumeMounts:
+            - mountPath: /etc/secrets/{{ include "ms-openapi-gateway.fullname" . }}
+              name: {{ include "ms-openapi-gateway.fullname" . }}
+              readOnly: true
+          {{- end }}
+      volumes:
+        - name: {{ include "ms-openapi-gateway.fullname" . }}
+          secret:
+            secretName: {{ include "ms-openapi-gateway.fullname" . }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+    {{- toYaml . | nindent 8 }}
+  {{- end }}

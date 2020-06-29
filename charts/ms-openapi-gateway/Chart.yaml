@@ -1,0 +1,13 @@
+apiVersion: v2
+name: ms-openapi-gateway
+description: A Helm chart for the openapi-gateway application
+home: https://github.com/jrmcdonald/ms-openapi-gateway
+
+type: application
+
+maintainers:
+  - name: Jamie McDonald
+    email: jamie@qwyck.net
+    url: https://www.qwyck.co.uk
+
+version: 1.0.0
