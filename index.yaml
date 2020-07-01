@@ -100,6 +100,24 @@ entries:
     version: 0.1.0
   ms-customer-entity:
   - apiVersion: v2
+    created: "2020-07-01T15:18:50.055745301Z"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.9.8
+    description: A Helm chart for the customer-entity application
+    digest: 4b7cb023b19b1a12f8933e91bec1a59c3fb0624c465e388395950220a87a078f
+    home: https://github.com/jrmcdonald/ms-customer-entity
+    maintainers:
+    - email: jamie@qwyck.net
+      name: Jamie McDonald
+      url: https://www.qwyck.co.uk
+    name: ms-customer-entity
+    type: application
+    urls:
+    - https://github.com/jrmcdonald/helm-charts/releases/download/ms-customer-entity-1.2.4/ms-customer-entity-1.2.4.tgz
+    version: 1.2.4
+  - apiVersion: v2
     created: "2020-07-01T14:07:04.559292059Z"
     dependencies:
     - name: postgresql
@@ -208,6 +226,20 @@ entries:
     - https://github.com/jrmcdonald/helm-charts/releases/download/ms-customer-entity-1.0.0/ms-customer-entity-1.0.0.tgz
     version: 1.0.0
   ms-customer-orchestration:
+  - apiVersion: v2
+    created: "2020-07-01T15:18:50.126616561Z"
+    description: A Helm chart for the customer-orchestration application
+    digest: f152e15a16dd29f1dfaf1e9b0b52324f7cc0758c8dcb9ef1c195aa2fa5bd7093
+    home: https://github.com/jrmcdonald/ms-customer-orchestration
+    maintainers:
+    - email: jamie@qwyck.net
+      name: Jamie McDonald
+      url: https://www.qwyck.co.uk
+    name: ms-customer-orchestration
+    type: application
+    urls:
+    - https://github.com/jrmcdonald/helm-charts/releases/download/ms-customer-orchestration-1.0.3/ms-customer-orchestration-1.0.3.tgz
+    version: 1.0.3
   - apiVersion: v2
     created: "2020-07-01T13:24:27.309954561Z"
     description: A Helm chart for the customer-orchestration application
