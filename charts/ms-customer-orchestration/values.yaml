@@ -94,9 +94,5 @@ applicationConfig:
       - url: https://api.qwyck-cloud.co.uk/customer-orchestration
         description: Customer-Orchestration external endpoint
   spring:
-    cloud:
-      kubernetes:
-        reload:
-          strategy: restart_context
     webflux:
       base-path: /customer-orchestration
