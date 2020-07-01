@@ -33,11 +33,23 @@ ports:
     protocol: TCP
 
 probes:
+  livenessProbe:
+    httpGet:
+      path: /customer-entity/actuator/health/liveness
+      port: http
+    periodSeconds: 5
+    failureThreshold: 1
   readinessProbe:
     httpGet:
       path: /customer-entity/actuator/health/readiness
       port: http
     periodSeconds: 5
+  startupProbe:
+    httpGet:
+      path: /customer-entity/actuator/health/liveness
+      port: http
+    periodSeconds: 3
+    failureThreshold: 8
 
 resources:
   limits:
