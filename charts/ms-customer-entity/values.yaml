@@ -81,6 +81,10 @@ applicationConfig:
       web:
         exposure:
           include: health,info,metrics,prometheus,restart
+  openapi:
+    servers:
+      - url: http://ms-customer-entity.prod/customer-entity
+        description: Customer-Entity internal service
   server:
     servlet:
       contextPath: /customer-entity

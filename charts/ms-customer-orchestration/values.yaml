@@ -89,6 +89,10 @@ applicationConfig:
       web:
         exposure:
           include: health,info,metrics,prometheus,restart
+  openapi:
+    servers:
+      - url: https://api.qwyck-cloud.co.uk/customer-orchestration
+        description: Customer-Orchestration external endpoint
   spring:
     cloud:
       kubernetes:
