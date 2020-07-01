@@ -24,23 +24,10 @@ service:
   type: ClusterIP
   port: 80
 
-ingress:
+ambassador:
   enabled: true
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: "letsencrypt-staging"
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      location ~ /actuator {
-        deny all;
-        return 403;
-      }
-  hosts:
-    - host: api.qwyck-cloud.co.uk
-      paths: ["/customer-orchestration"]
-  tls:
-    - secretName: api-qwyck-cloud-tls
-      hosts:
-        - api.qwyck-cloud.co.uk
+  prefix: /customer-orchestration/v1/
+  rewrite: /v1/
 
 ports:
   - name: http
@@ -50,18 +37,18 @@ ports:
 probes:
   livenessProbe:
     httpGet:
-      path: /customer-orchestration/actuator/health/liveness
+      path: /actuator/health/liveness
       port: http
     periodSeconds: 5
     failureThreshold: 1
   readinessProbe:
     httpGet:
-      path: /customer-orchestration/actuator/health/readiness
+      path: /actuator/health/readiness
       port: http
     periodSeconds: 5
   startupProbe:
     httpGet:
-      path: /customer-orchestration/actuator/health/liveness
+      path: /actuator/health/liveness
       port: http
     periodSeconds: 3
     failureThreshold: 8
@@ -81,6 +68,10 @@ tolerations: []
 affinity: {}
 
 applicationConfig:
+  customer:
+    entity:
+      service-url: http://ms-customer-entity.prod
+      service-endpoint: /v1/customer/{id}
   management:
     endpoint:
       restart:
@@ -93,6 +84,3 @@ applicationConfig:
     servers:
       - url: https://api.qwyck-cloud.co.uk/customer-orchestration
         description: Customer-Orchestration external endpoint
-  spring:
-    webflux:
-      base-path: /customer-orchestration

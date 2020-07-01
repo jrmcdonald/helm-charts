@@ -1,0 +1,13 @@
+{{- if .Values.ambassador.enabled -}}
+apiVersion: getambassador.io/v2
+kind:  Mapping
+metadata:
+  namespace: {{ .Release.Namespace }}
+  name: {{ include "ms-customer-orchestration.fullname" . }}
+  labels:
+  {{- include "ms-customer-orchestration.labels" . | nindent 4 }}
+spec:
+  prefix: {{ .Values.ambassador.prefix }}
+  rewrite: {{ .Values.ambassador.rewrite }}
+  service: http://{{ include "ms-customer-orchestration.fullname" . }}
+{{- end }}
