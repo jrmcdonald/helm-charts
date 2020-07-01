@@ -24,23 +24,10 @@ service:
   type: ClusterIP
   port: 80
 
-ingress:
+ambassador:
   enabled: true
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: "letsencrypt-staging"
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      location ~ /actuator {
-        deny all;
-        return 403;
-      }
-  hosts:
-    - host: api.qwyck-cloud.co.uk
-      paths: ["/openapi-gateway"]
-  tls:
-    - secretName: api-qwyck-cloud-tls
-      hosts:
-        - api.qwyck-cloud.co.uk
+  prefix: /openapi-gateway/
+  rewrite: /
 
 ports:
   - name: http
@@ -53,28 +40,28 @@ secrets:
 probes:
   livenessProbe:
     httpGet:
-      path: /openapi-gateway/actuator/health/liveness
+      path: /actuator/health/liveness
       port: http
     periodSeconds: 5
     failureThreshold: 1
   readinessProbe:
     httpGet:
-      path: /openapi-gateway/actuator/health/readiness
+      path: /actuator/health/readiness
       port: http
     periodSeconds: 5
   startupProbe:
     httpGet:
-      path: /openapi-gateway/actuator/health/liveness
+      path: /actuator/health/liveness
       port: http
     periodSeconds: 3
     failureThreshold: 8
 
 resources:
   limits:
-    cpu: 100m
+    cpu: 300m
     memory: 1Gi
   requests:
-    cpu: 100m
+    cpu: 300m
     memory: 1Gi
 
 nodeSelector: {}
@@ -97,18 +84,21 @@ applicationConfig:
       kubernetes:
         reload:
           strategy: restart_context
-    webflux:
-      base-path: /openapi-gateway
   openapi:
     endpoints:
       customer-orchestration:
         gateway-prefix: /openapi-gateway
         service-url: http://ms-customer-orchestration.prod
-        service-path: /customer-orchestration/v3/api-docs
+        service-prefix: /customer-orchestration
+        service-path: /v3/api-docs
       customer-entity:
         gateway-prefix: /openapi-gateway
         service-url: http://ms-customer-entity.prod
-        service-path: /customer-entity/v3/api-docs
+        service-prefix: /customer-entity
+        service-path: /v3/api-docs
   springdoc:
     swagger-ui:
+      path: /
       config-url: /openapi-gateway/swagger-config.json
+    webjars:
+      prefix: /openapi-gateway/webjars

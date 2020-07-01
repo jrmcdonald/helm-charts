@@ -1,0 +1,13 @@
+{{- if .Values.ambassador.enabled -}}
+apiVersion: getambassador.io/v2
+kind:  Mapping
+metadata:
+  namespace: {{ .Release.Namespace }}
+  name: {{ include "ms-openapi-gateway.fullname" . }}
+  labels:
+  {{- include "ms-openapi-gateway.labels" . | nindent 4 }}
+spec:
+  prefix: {{ .Values.ambassador.prefix }}
+  rewrite: {{ .Values.ambassador.rewrite }}
+  service: http://{{ include "ms-openapi-gateway.fullname" . }}
+  {{- end }}
