@@ -168,4 +168,19 @@ entries:
     urls:
     - https://github.com/jrmcdonald/helm-charts/releases/download/ms-customer-orchestration-1.0.0/ms-customer-orchestration-1.0.0.tgz
     version: 1.0.0
+  ms-openapi-gateway:
+  - apiVersion: v2
+    created: "2020-07-01T08:32:32.028067349Z"
+    description: A Helm chart for the openapi-gateway application
+    digest: eac85c06cdad34a9173533842a3f7c1f20d27231bd08fe60b1dfa2fc8575a55a
+    home: https://github.com/jrmcdonald/ms-openapi-gateway
+    maintainers:
+    - email: jamie@qwyck.net
+      name: Jamie McDonald
+      url: https://www.qwyck.co.uk
+    name: ms-openapi-gateway
+    type: application
+    urls:
+    - https://github.com/jrmcdonald/helm-charts/releases/download/ms-openapi-gateway-1.0.0/ms-openapi-gateway-1.0.0.tgz
+    version: 1.0.0
 generated: "2020-03-31T22:16:57.075302+01:00"
