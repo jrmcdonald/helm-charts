@@ -89,10 +89,6 @@ applicationConfig:
     servlet:
       contextPath: /customer-entity
   spring:
-    cloud:
-      kubernetes:
-        reload:
-          strategy: restart_context
     datasource:
       url: jdbc:postgresql://ms-customer-entity-postgresql.prod.svc.cluster.local:5432/postgres
       username: customer-entity
