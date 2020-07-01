@@ -38,16 +38,18 @@ spec:
           {{- toYaml .Values.probes.startupProbe | nindent 12 }}
           resources:
           {{- toYaml .Values.resources | nindent 12 }}
-          {{- if .Values.secrets.mount -}}
+          {{- if .Values.secrets.mountNamedSecret }}
           volumeMounts:
             - mountPath: /etc/secrets/{{ include "ms-openapi-gateway.fullname" . }}
               name: {{ include "ms-openapi-gateway.fullname" . }}
               readOnly: true
           {{- end }}
+      {{- if .Values.secrets.mountNamedSecret }}
       volumes:
         - name: {{ include "ms-openapi-gateway.fullname" . }}
           secret:
             secretName: {{ include "ms-openapi-gateway.fullname" . }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
       {{- toYaml . | nindent 8 }}

@@ -36,7 +36,7 @@ ingress:
       }
   hosts:
     - host: api.qwyck-cloud.co.uk
-      paths: ["/openapi"]
+      paths: ["/openapi-gateway"]
   tls:
     - secretName: api-qwyck-cloud-tls
       hosts:
@@ -48,7 +48,7 @@ ports:
     protocol: TCP
 
 secrets:
-  mount: false
+  mountNamedSecret: false
 
 probes:
   livenessProbe:
@@ -98,14 +98,17 @@ applicationConfig:
         reload:
           strategy: restart_context
     webflux:
-      base-path: /openapi
+      base-path: /openapi-gateway
   openapi:
     endpoints:
       customer-orchestration:
-        gateway-prefix: /customer-orchestration
+        gateway-prefix: /openapi-gateway
         service-url: http://ms-customer-orchestration.prod
-        service-path: /v3/api-docs
+        service-path: /customer-orchestration/v3/api-docs
       customer-entity:
-        gateway-prefix: /customer-entity
+        gateway-prefix: /openapi-gateway
         service-url: http://ms-customer-entity.prod
-        service-path: /v3/api-docs
+        service-path: /customer-entity/v3/api-docs
+  springdoc:
+    swagger-ui:
+      config-url: /openapi-gateway/swagger-config.json
