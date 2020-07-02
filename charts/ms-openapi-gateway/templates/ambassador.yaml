@@ -7,7 +7,5 @@ metadata:
   labels:
   {{- include "ms-openapi-gateway.labels" . | nindent 4 }}
 spec:
-  prefix: {{ .Values.ambassador.prefix }}
-  rewrite: {{ .Values.ambassador.rewrite }}
-  service: http://{{ include "ms-openapi-gateway.fullname" . }}
+  {{- toYaml .Values.ambassador.mapping | nindent 2 }}
   {{- end }}
