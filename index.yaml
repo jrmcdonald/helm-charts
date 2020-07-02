@@ -334,6 +334,20 @@ entries:
     version: 1.0.0
   ms-openapi-gateway:
   - apiVersion: v2
+    created: "2020-07-02T12:48:04.826898438Z"
+    description: A Helm chart for the openapi-gateway application
+    digest: 8dce57525321e8ba33da3e71ec2c471350b60e1e173d28652c9ad857ebc60b03
+    home: https://github.com/jrmcdonald/ms-openapi-gateway
+    maintainers:
+    - email: jamie@qwyck.net
+      name: Jamie McDonald
+      url: https://www.qwyck.co.uk
+    name: ms-openapi-gateway
+    type: application
+    urls:
+    - https://github.com/jrmcdonald/helm-charts/releases/download/ms-openapi-gateway-1.1.3/ms-openapi-gateway-1.1.3.tgz
+    version: 1.1.3
+  - apiVersion: v2
     created: "2020-07-02T12:24:12.778464839Z"
     description: A Helm chart for the openapi-gateway application
     digest: e346d080a654dfab1cf9065a01cc122be6eb05d1f86205f17844bc615171ff31
