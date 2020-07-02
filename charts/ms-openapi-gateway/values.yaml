@@ -26,10 +26,8 @@ service:
 
 ambassador:
   enabled: true
-  mapping:
-    prefix: /openapi-gateway/(swagger-config\.json|webjars\/.*|api.*)
-    prefix_regex: true
-    service: http://ms-openapi-gateway
+  prefix: /openapi-gateway/
+  rewrite: /
 
 ports:
   - name: http
@@ -81,17 +79,22 @@ applicationConfig:
       web:
         exposure:
           include: health,info,metrics,prometheus,restart
+  spring:
+    cloud:
+      kubernetes:
+        reload:
+          strategy: restart_context
   openapi:
     endpoints:
       customer-orchestration:
         gateway-prefix: /openapi-gateway
         service-url: http://ms-customer-orchestration.prod
-        service-prefix: /api/customer-orchestration
+        service-prefix: /customer-orchestration
         service-path: /v3/api-docs
       customer-entity:
         gateway-prefix: /openapi-gateway
         service-url: http://ms-customer-entity.prod
-        service-prefix: /api/customer-entity
+        service-prefix: /customer-entity
         service-path: /v3/api-docs
   springdoc:
     swagger-ui:
