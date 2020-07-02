@@ -6,6 +6,7 @@ metadata:
   namespace: prod
   annotations:
     filter.fluxcd.io/chart-image: semver:^1.0.0
+    fluxcd.io/automated: 'true'
 spec:
   releaseName: ms-openapi-gateway
   chart:
