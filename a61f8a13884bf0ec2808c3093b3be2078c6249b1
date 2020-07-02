@@ -1,0 +1,1 @@
+{"jobID":"b3016d3c-9949-f292-83e9-5f9804f2b54f","spec":{"type":"policy","cause":{"Message":"","User":"Jamie McDonald \u003cjamie@qwyck.net\u003e"},"spec":{"prod:helmrelease/ms-openapi-gateway":{"add":{"automated":"true"},"remove":{}}}},"result":null}
