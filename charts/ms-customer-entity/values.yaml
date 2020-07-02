@@ -24,9 +24,6 @@ service:
   type: ClusterIP
   port: 80
 
-ingress:
-  enabled: false
-
 ports:
   - name: http
     containerPort: 8080
@@ -35,18 +32,18 @@ ports:
 probes:
   livenessProbe:
     httpGet:
-      path: /customer-entity/actuator/health/liveness
+      path: /actuator/health/liveness
       port: http
     periodSeconds: 5
     failureThreshold: 1
   readinessProbe:
     httpGet:
-      path: /customer-entity/actuator/health/readiness
+      path: /actuator/health/readiness
       port: http
     periodSeconds: 5
   startupProbe:
     httpGet:
-      path: /customer-entity/actuator/health/liveness
+      path: /actuator/health/liveness
       port: http
     periodSeconds: 3
     failureThreshold: 8
@@ -83,11 +80,8 @@ applicationConfig:
           include: health,info,metrics,prometheus,restart
   openapi:
     servers:
-      - url: http://ms-customer-entity.prod/customer-entity
+      - url: http://ms-customer-entity.prod
         description: Customer-Entity internal service
-  server:
-    servlet:
-      contextPath: /customer-entity
   spring:
     datasource:
       url: jdbc:postgresql://ms-customer-entity-postgresql.prod.svc.cluster.local:5432/postgres
