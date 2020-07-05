@@ -100,6 +100,24 @@ entries:
     version: 0.1.0
   ms-customer-entity:
   - apiVersion: v2
+    created: "2020-07-05T21:14:27.51567558Z"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.9.8
+    description: A Helm chart for the customer-entity application
+    digest: d13b1931905dacdffdd80ded64e9796617898a255da31aa1b443acf522ca9f50
+    home: https://github.com/jrmcdonald/ms-customer-entity
+    maintainers:
+    - email: jamie@qwyck.net
+      name: Jamie McDonald
+      url: https://www.qwyck.co.uk
+    name: ms-customer-entity
+    type: application
+    urls:
+    - https://github.com/jrmcdonald/helm-charts/releases/download/ms-customer-entity-1.3.1/ms-customer-entity-1.3.1.tgz
+    version: 1.3.1
+  - apiVersion: v2
     created: "2020-07-02T00:02:07.246284382Z"
     dependencies:
     - name: postgresql
@@ -263,6 +281,20 @@ entries:
     version: 1.0.0
   ms-customer-orchestration:
   - apiVersion: v2
+    created: "2020-07-05T21:14:27.584257179Z"
+    description: A Helm chart for the customer-orchestration application
+    digest: 6f0ccbe4b9cade261abbe2789ff24ed94c3c726f9fd36ba94cfd0c57ef958c31
+    home: https://github.com/jrmcdonald/ms-customer-orchestration
+    maintainers:
+    - email: jamie@qwyck.net
+      name: Jamie McDonald
+      url: https://www.qwyck.co.uk
+    name: ms-customer-orchestration
+    type: application
+    urls:
+    - https://github.com/jrmcdonald/helm-charts/releases/download/ms-customer-orchestration-1.1.1/ms-customer-orchestration-1.1.1.tgz
+    version: 1.1.1
+  - apiVersion: v2
     created: "2020-07-02T00:02:07.337184723Z"
     description: A Helm chart for the customer-orchestration application
     digest: 7ce0d25f6c37a6af316fb8d0b075600d32655bd3f16693790eb161285b68e2ac
@@ -333,6 +365,20 @@ entries:
     - https://github.com/jrmcdonald/helm-charts/releases/download/ms-customer-orchestration-1.0.0/ms-customer-orchestration-1.0.0.tgz
     version: 1.0.0
   ms-openapi-gateway:
+  - apiVersion: v2
+    created: "2020-07-05T21:14:27.676620844Z"
+    description: A Helm chart for the openapi-gateway application
+    digest: 46b542f628339ac6bae549c9bbf7c7e36b0bf99ceb174fe83ce82adfd106b0a9
+    home: https://github.com/jrmcdonald/ms-openapi-gateway
+    maintainers:
+    - email: jamie@qwyck.net
+      name: Jamie McDonald
+      url: https://www.qwyck.co.uk
+    name: ms-openapi-gateway
+    type: application
+    urls:
+    - https://github.com/jrmcdonald/helm-charts/releases/download/ms-openapi-gateway-1.1.4/ms-openapi-gateway-1.1.4.tgz
+    version: 1.1.4
   - apiVersion: v2
     created: "2020-07-02T12:48:04.826898438Z"
     description: A Helm chart for the openapi-gateway application
