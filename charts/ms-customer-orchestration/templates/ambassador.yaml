@@ -1,13 +1,14 @@
 {{- if .Values.ambassador.enabled -}}
+  {{- range $key, $mapping := .Values.ambassador.mappings }}
+---
 apiVersion: getambassador.io/v2
 kind:  Mapping
 metadata:
-  namespace: {{ .Release.Namespace }}
-  name: {{ include "ms-customer-orchestration.fullname" . }}
+  namespace: {{ $.Release.Namespace }}
+  name: {{ printf "%s-%s" (include "ms-customer-orchestration.fullname" $) $key }}
   labels:
-  {{- include "ms-customer-orchestration.labels" . | nindent 4 }}
+    {{- include "ms-customer-orchestration.labels" $ | nindent 4 }}
 spec:
-  prefix: {{ .Values.ambassador.prefix }}
-  rewrite: {{ .Values.ambassador.rewrite }}
-  service: http://{{ include "ms-customer-orchestration.fullname" . }}
-{{- end }}
+  {{- toYaml $mapping | nindent 4 }}
+    {{- end }}
+    {{- end }}
