@@ -26,8 +26,11 @@ service:
 
 ambassador:
   enabled: true
-  prefix: /customer-orchestration/v1/
-  rewrite: /v1/
+  mappings:
+    v1:
+      prefix: /customer-orchestration/v1/
+      rewrite: /v1/
+      service: http://ms-customer-orchestration
 
 ports:
   - name: http
@@ -73,13 +76,10 @@ applicationConfig:
       service-url: http://ms-customer-entity.prod
       service-endpoint: /v1/customer/{id}
   management:
-    endpoint:
-      restart:
-        enabled: true
     endpoints:
       web:
         exposure:
-          include: health,info,metrics,prometheus,restart
+          include: health,info,metrics,prometheus
   openapi:
     servers:
       - url: https://api.qwyck-cloud.co.uk/customer-orchestration

@@ -71,18 +71,15 @@ postgresql:
 
 applicationConfig:
   management:
-    endpoint:
-      restart:
-        enabled: true
     endpoints:
       web:
         exposure:
-          include: health,info,metrics,prometheus,restart
+          include: health,info,metrics,prometheus
   openapi:
     servers:
       - url: http://ms-customer-entity.prod
         description: Customer-Entity internal service
   spring:
     datasource:
-      url: jdbc:postgresql://ms-customer-entity-postgresql.prod.svc.cluster.local:5432/postgres
+      url: jdbc:postgresql://ms-customer-entity-postgresql.prod:5432/postgres
       username: customer-entity
