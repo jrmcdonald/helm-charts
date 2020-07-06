@@ -1,0 +1,82 @@
+replicaCount: 1
+
+image:
+  tag: 1.0.0
+  repository: jrmcdonald/<CHARTNAME>
+  pullPolicy: IfNotPresent
+
+serviceAccount:
+  create: true
+
+podSecurityContext:
+  fsGroup: 2000
+
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  readOnlyRootFilesystem: false
+  runAsNonRoot: true
+  runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+
+ambassador:
+  enabled: false
+#  mappings:
+#    v1:
+#      prefix: /example-service/v1/
+#      rewrite: /v1/
+#      service: http://<CHARTNAME>
+
+ports:
+  - name: http
+    containerPort: 8080
+    protocol: TCP
+
+probes:
+  livenessProbe:
+    httpGet:
+      path: /actuator/health/liveness
+      port: http
+    periodSeconds: 5
+    failureThreshold: 1
+  readinessProbe:
+    httpGet:
+      path: /actuator/health/readiness
+      port: http
+    periodSeconds: 5
+  startupProbe:
+    httpGet:
+      path: /actuator/health/liveness
+      port: http
+    periodSeconds: 3
+    failureThreshold: 8
+
+resources:
+  limits:
+    cpu: 300m
+    memory: 1Gi
+  requests:
+    cpu: 300m
+    memory: 1Gi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+applicationConfig:
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: health,info,metrics,prometheus
+  openapi:
+    servers:
+      - url: https://api.qwyck-cloud.co.uk/<REPLACE ME>
+        description: <REPLACE ME>

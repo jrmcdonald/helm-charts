@@ -1,0 +1,19 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: <CHARTNAME>
+  namespace: prod
+  annotations:
+    filter.fluxcd.io/chart-image: semver:^1.0.0
+    fluxcd.io/automated: 'true'
+spec:
+  releaseName: <CHARTNAME>
+  chart:
+    git: git@github.com:jrmcdonald/helm-charts
+    path: charts/<CHARTNAME>
+    ref: main
+  values:
+    image:
+      repository: jrmcdonald/<CHARTNAME>
+      tag: 1.0.0
