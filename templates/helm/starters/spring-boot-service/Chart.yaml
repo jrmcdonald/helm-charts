@@ -1,0 +1,13 @@
+apiVersion: v2
+name: <CHARTNAME>
+description: <REPLACE_ME>
+home: https://github.com/jrmcdonald/<CHARTNAME>
+
+type: application
+
+maintainers:
+  - name: Jamie McDonald
+    email: jamie@qwyck.net
+    url: https://www.qwyck.co.uk
+
+version: 1.0.0
