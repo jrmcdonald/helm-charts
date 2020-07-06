@@ -45,8 +45,8 @@ probes:
     httpGet:
       path: /actuator/health/liveness
       port: http
-    periodSeconds: 3
-    failureThreshold: 8
+    periodSeconds: 5
+    failureThreshold: 10
 
 resources:
   limits:
