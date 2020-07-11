@@ -28,7 +28,7 @@ ambassador:
   enabled: false
 #  mappings:
 #    v1:
-#      prefix: /example-service/v1/
+#      prefix: /<REPLACE ME>/v1/
 #      rewrite: /v1/
 #      service: http://<CHARTNAME>
 
@@ -36,6 +36,9 @@ ports:
   - name: http
     containerPort: 8080
     protocol: TCP
+
+secrets:
+  mountNamedSecret: false
 
 probes:
   livenessProbe:

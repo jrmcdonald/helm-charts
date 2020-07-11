@@ -38,14 +38,18 @@ spec:
           {{- toYaml .Values.probes.startupProbe | nindent 12 }}
           resources:
           {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.secrets.mountNamedSecret }}
           volumeMounts:
             - mountPath: /etc/secrets/{{ include "<CHARTNAME>.fullname" . }}
               name: {{ include "<CHARTNAME>.fullname" . }}
               readOnly: true
+          {{- end }}
+      {{- if .Values.secrets.mountNamedSecret }}
       volumes:
         - name: {{ include "<CHARTNAME>.fullname" . }}
           secret:
             secretName: {{ include "<CHARTNAME>.fullname" . }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
       {{- toYaml . | nindent 8 }}
