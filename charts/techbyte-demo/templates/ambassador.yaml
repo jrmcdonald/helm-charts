@@ -1,0 +1,14 @@
+{{- if .Values.ambassador.enabled -}}
+  {{- range $key, $mapping := .Values.ambassador.mappings }}
+---
+apiVersion: getambassador.io/v2
+kind:  Mapping
+metadata:
+  namespace: {{ $.Release.Namespace }}
+  name: {{ printf "%s-%s" (include "techbyte-demo.fullname" $) $key }}
+  labels:
+    {{- include "techbyte-demo.labels" $ | nindent 4 }}
+spec:
+  {{- toYaml $mapping | nindent 4 }}
+    {{- end }}
+    {{- end }}
