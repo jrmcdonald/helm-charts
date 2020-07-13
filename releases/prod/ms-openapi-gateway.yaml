@@ -16,4 +16,4 @@ spec:
   values:
     image:
       repository: jrmcdonald/ms-openapi-gateway
-      tag: 1.0.2
+      tag: 1.0.3
