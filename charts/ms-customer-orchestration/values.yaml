@@ -80,7 +80,22 @@ applicationConfig:
       web:
         exposure:
           include: health,info,metrics,prometheus
+  security:
+    oauth2:
+      client:
+        registration:
+          auth0:
+            authorization-grant-type: client_credentials
+            client-id: dummy-value
+            client-secret: dummy-value
+            scope: read:customer,create:customer
+        provider:
+          auth0:
+            token-uri: https://qwyck.eu.auth0.com/oauth/token
   openapi:
+    title: Customer Orchestration
+    description: Customer Orchestration API
+    version: 1.0.1
     servers:
       - url: https://api.qwyck-cloud.co.uk/customer-orchestration
         description: Customer-Orchestration external endpoint
