@@ -485,4 +485,19 @@ entries:
     urls:
     - https://github.com/jrmcdonald/helm-charts/releases/download/ms-openapi-gateway-1.0.0/ms-openapi-gateway-1.0.0.tgz
     version: 1.0.0
+  techbyte-demo:
+  - apiVersion: v2
+    created: "2020-07-17T13:18:53.840194577Z"
+    description: Demo application for a Waitrose Tech-Byte
+    digest: ac69e0a2b38ac231131f1bcec5cc092f9ceaef635bf0161630627a6b256eb1df
+    home: https://github.com/jrmcdonald/techbyte-demo
+    maintainers:
+    - email: jamie@qwyck.net
+      name: Jamie McDonald
+      url: https://www.qwyck.co.uk
+    name: techbyte-demo
+    type: application
+    urls:
+    - https://github.com/jrmcdonald/helm-charts/releases/download/techbyte-demo-1.0.0/techbyte-demo-1.0.0.tgz
+    version: 1.0.0
 generated: "2020-03-31T22:16:57.075302+01:00"
