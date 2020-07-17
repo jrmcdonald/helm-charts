@@ -1,0 +1,13 @@
+apiVersion: v2
+name: techbyte-demo
+description: Demo application for a Waitrose Tech-Byte
+home: https://github.com/jrmcdonald/techbyte-demo
+
+type: application
+
+maintainers:
+  - name: Jamie McDonald
+    email: jamie@qwyck.net
+    url: https://www.qwyck.co.uk
+
+version: 1.0.0

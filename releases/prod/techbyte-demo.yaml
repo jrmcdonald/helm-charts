@@ -1,0 +1,19 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: techbyte-demo
+  namespace: prod
+  annotations:
+    filter.fluxcd.io/chart-image: semver:^1.0.0
+    fluxcd.io/automated: 'true'
+spec:
+  releaseName: techbyte-demo
+  chart:
+    git: git@github.com:jrmcdonald/helm-charts
+    path: charts/techbyte-demo
+    ref: main
+  values:
+    image:
+      repository: jrmcdonald/techbyte-demo
+      tag: 1.0.3
